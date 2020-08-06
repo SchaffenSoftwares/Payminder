@@ -32,8 +32,9 @@ dependencies:
   change_app_package_name: ^0.1.2
   firebase_auth: ^0.16.1
   firebase_core: ^0.4.5
-  cloud_firestore: ^0.13.7
-
+  cloud_firestore: ^0.12.9+5
+  flutter_local_notifications: ^1.4.4+2
+  characters: ^1.0.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

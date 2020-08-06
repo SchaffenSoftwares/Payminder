@@ -44,6 +44,7 @@ class _DetailsPageState extends State<DetailsPage> with SingleTickerProviderStat
     }
 
     void getData(String email)async {
+      FirstNameAndLastName.email=email;
       var nameData=await databaseReference.collection('${email}Data').getDocuments();
       for(var name in nameData.documents)
       {

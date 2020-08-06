@@ -23,8 +23,11 @@ class _SettingsPageState extends State<SettingsPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    //getemail();
     firstName=FirstNameAndLastName.firstName;
     lastName=FirstNameAndLastName.lastName;
+    userEmail=FirstNameAndLastName.email;
+
   }
 
   void _logOutUser(){
@@ -32,6 +35,14 @@ class _SettingsPageState extends State<SettingsPage> {
       Navigator.pushNamedAndRemoveUntil(context, WelcomeScreen.id, (route) => false);
     });
   }
+
+//  void getemail() async{
+//    var user = await _auth.currentUser();
+//    var email = await user.email;
+//    setState(() {
+//      userEmail=email;
+//    });
+//  }
 
   void getData() async{
     var user = await _auth.currentUser();
@@ -94,18 +105,13 @@ class _SettingsPageState extends State<SettingsPage> {
                         Container(
                           width: MediaQuery.of(context).size.width,
                         ),
-                        GestureDetector(
-                          onTap: (){
-                            getData();
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(vertical:8.0,horizontal: 10.0),
-                            child: Text('Contact Us',
-                              style:TextStyle(
-                                color: Colors.white,
-                                fontSize: 17.0,
-                              ),),
-                          ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical:8.0,horizontal: 10.0),
+                          child: Text('Contact Us',
+                            style:TextStyle(
+                              color: Colors.white,
+                              fontSize: 17.0,
+                            ),),
                         ),
                         Container(
                           height: 3.0,

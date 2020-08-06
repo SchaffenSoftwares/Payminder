@@ -65,6 +65,7 @@ class _LoadingScreenState extends State<LoadingScreen> with SingleTickerProvider
   void getData() async{
     var user = await _auth.currentUser();
     var email = await user.email;
+    FirstNameAndLastName.email=email;
     var nameData=await databaseReference.collection('${email}Data').getDocuments();
     for(var name in nameData.documents){
       if(name.data['first_name']!=null && name.data['last_name']!=null)

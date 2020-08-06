@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:payminderapp/storing_data/database_factors.dart';
 import 'package:payminderapp/ui/tab_bar_view.dart';
 import 'package:payminderapp/ui_components/main_background.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -27,44 +28,67 @@ class _AddFieldPageState extends State<AddFieldPage> {
   bool autoValidate = false;
   final formKey = GlobalKey<FormState>();
   String defaultMonth='1',defaultDay='1';
-
+  int timeStamp(int eventDay,int eventMonth){
+    String day=eventDay.toString(),
+        month=eventMonth.toString();
+    var now =DateTime.now();
+    //int currentDay=now.day;
+    String timeStamp='';
+    int currentMonth=now.day;
+    int currentyear=now.year;
+    if(eventDay<10){
+      day='0'+day;
+    }
+    if(eventMonth<10){
+      month='0'+month;
+    }
+    if(eventMonth>currentMonth){
+    timeStamp='$currentyear$month$day';
+    }else{
+      timeStamp='${currentyear+1}$month$day';
+    }
+    return int.parse(timeStamp);
+  }
   void setData({String eventName,int eventDay,int eventMonth,String eventPeriod}) async{
     var user = await _auth.currentUser();
     var email = user.email;
     if(eventName!=null && eventMonth!=null && eventDay!=null && eventPeriod!=null)
       {
+        var currentTimeStamp=timeStamp(eventDay, eventMonth);
         print("data is being sent");
     await databaseReference.collection('${email}Data').add({
-      "event_name":eventName,
-      "event_day":eventDay,
-      "event_Month":eventMonth,
-      "event_period":eventPeriod,
-      "bool":false,
+      DatabaseFactors.eventName:eventName,
+      DatabaseFactors.eventDay:eventDay,
+      DatabaseFactors.eventMonth:eventMonth,
+      DatabaseFactors.paymentPeriod:eventPeriod,
+      DatabaseFactors.paid:false,
+      DatabaseFactors.timeStamp:currentTimeStamp,
     })
         .then((value){
-          Navigator.pushNamed(context, TabBarViews.id);
-    }).catchError((err){
-      if(err.code){
-        showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            // return object of type Dialog
-            return AlertDialog(
-              title: new Text("Some error occured"),
-              content: new Text("Please check your connection or try fter some time."),
-              actions: <Widget>[
-                // usually buttons at the bottom of the dialog
-                new FlatButton(
-                  child: new Text("Close"),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                ),
-              ],
-            );
-          },
-        );
-      }
+          Navigator.of(context).pop();
+    }).catchError((err) {
+      if(err.code!=null){
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          // return object of type Dialog
+          return AlertDialog(
+            title: new Text("Some error occured"),
+            content: new Text(
+                "Please check your connection or try fter some time."),
+            actions: <Widget>[
+              // usually buttons at the bottom of the dialog
+              new FlatButton(
+                child: new Text("Close"),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
     })
         ;
       }
@@ -241,7 +265,7 @@ class _AddFieldPageState extends State<AddFieldPage> {
                               canvasColor: Color(0xffA396D1),
                             ),
                   child: Container(
-                    width: 70.0,
+                    width: 72.0,
                     child: DropdownButton(
                       hint: Text('month',
                         style: TextStyle(
@@ -351,6 +375,7 @@ class _AddFieldPageState extends State<AddFieldPage> {
                               eventDay: int.parse(defaultDay),
                               eventPeriod: defaultPaymentMethod,
                             );
+                             Navigator.pop(context);
                               }
 
                           }

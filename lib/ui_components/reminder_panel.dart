@@ -6,8 +6,9 @@ class ReminderPanel extends StatelessWidget {
   final String days,rechargeName;
   final String date;
   final bool paid;
+  final Function onTap,deleteFunction;
 
-  const ReminderPanel({this.days='',this.rechargeName='N/A', this.date='N/A', this.paid=false});
+  const ReminderPanel({this.days='',this.rechargeName='N/A', this.date='N/A', this.paid=false, this.onTap, this.deleteFunction});
 
   @override
   Widget build(BuildContext context) {
@@ -44,12 +45,22 @@ class ReminderPanel extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text(rechargeName,
-                style:TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 23.0,
-                  color: Colors.white,
-                ),
+              Row(
+                children: <Widget>[
+                  Text(rechargeName,
+                    style:TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 23.0,
+                      color: Colors.white,
+                    ),
+                  ),
+                  SizedBox(width: 10.0,),
+                  GestureDetector(
+                    child: Icon(Icons.delete,
+                    color: Colors.white,),
+                    onTap: deleteFunction,
+                  ),
+                ],
               ),
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 10.0),
@@ -60,7 +71,7 @@ class ReminderPanel extends StatelessWidget {
                         fontSize: 15.0,
                         color: Colors.white,
                       ),),
-                    Text(' $days Days',
+                    Text(' $days',
                       style: TextStyle(
                         fontSize: 15.0,
                         fontWeight: FontWeight.bold,
@@ -110,19 +121,22 @@ class ReminderPanel extends StatelessWidget {
 
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 10.0),
-                child: Container(
-                  height: 40.0,
-                  width: 150.0,
-                  decoration: BoxDecoration(
-                    color: Colors.green,
-                    borderRadius: BorderRadius.all(Radius.circular(40.0)),
+                child: GestureDetector(
+                  child: Container(
+                    height: 40.0,
+                    width: 150.0,
+                    decoration: BoxDecoration(
+                      color: paid? Colors.grey: Colors.green,
+                      borderRadius: BorderRadius.all(Radius.circular(40.0)),
+                    ),
+                    child: Center(child: Text('Paid',
+                      style: TextStyle(
+                          color:Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20.0
+                      ),),),
                   ),
-                  child: Center(child: Text('Paid',
-                    style: TextStyle(
-                        color:Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20.0
-                    ),),),
+                  onTap: onTap,
                 ),
               ),
             ],

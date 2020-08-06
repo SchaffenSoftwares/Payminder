@@ -111,6 +111,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void getData(String email) async{
+    FirstNameAndLastName.email=email;
     var nameData = await _databaseReference.collection('${email}Data').getDocuments();
     for(var name in nameData.documents)
       if(name.data['first_name']!=null && name.data['last_name']!=null)
@@ -133,12 +134,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 Container(
                   width: MediaQuery.of(context).size.width,
                 ),
-                Hero(
-                  tag: 'logo',
-                  child: Container(
-                    child: Image.asset('images/Payminder_logo.png'),
-                    width: MediaQuery.of(context).size.width/3,
-                    height: MediaQuery.of(context).size.width/3,
+                Flexible(
+                  child: Hero(
+                    tag: 'logo',
+                    child: Container(
+                      child: Image.asset('images/Payminder_logo.png'),
+                      width: MediaQuery.of(context).size.width/3,
+                      height: MediaQuery.of(context).size.width/3,
+                    ),
                   ),
                 ),
                 Column(
