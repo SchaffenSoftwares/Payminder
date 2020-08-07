@@ -107,6 +107,7 @@ class _SettingsPageState extends State<SettingsPage> {
                         ),
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical:8.0,horizontal: 10.0),
+
                           child: GestureDetector(
                             child: Expanded(
                               child: Container(
@@ -142,6 +143,13 @@ class _SettingsPageState extends State<SettingsPage> {
                               );
                             },
                           ),
+
+                          child: Text('Contact Us',
+                            style:TextStyle(
+                              color: Colors.white,
+                              fontSize: 17.0,
+                            ),),
+
                         ),
                         Container(
                           height: 3.0,
@@ -157,6 +165,7 @@ class _SettingsPageState extends State<SettingsPage> {
                           padding: const EdgeInsets.symmetric(vertical:8.0,horizontal: 10.0),
                           child: GestureDetector(
                             onTap: _logOutUser,
+
                             child: Container(
                               width: MediaQuery.of(context).size.width,
                               child: Text('Log Out',
@@ -165,6 +174,13 @@ class _SettingsPageState extends State<SettingsPage> {
                                   fontSize: 17.0,
                                 ),),
                             ),
+
+                            child: Text('Log Out',
+                              style:TextStyle(
+                                color: Colors.white,
+                                fontSize: 17.0,
+                              ),),
+
                           ),
                         ),
                       ],

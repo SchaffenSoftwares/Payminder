@@ -25,17 +25,24 @@ class UpdateData{
         .updateData({"bool":true});
   }
 
+
   void updateMonthAndDay(String paymentType,int currentDay,int currentMonth,int timeStamp) async{
+  void updateMonthAndDay(String paymentType,int currentDay,int currentMonth) async{
+
     if(paymentType.compareTo('monthly')==0){
       if(currentMonth<12)
         {
           await dbRefernce
               .collection('${email}Data')
               .document(_currentDocument.documentID)
+ 
               .updateData({
             DatabaseFactors.eventMonth:currentMonth+1,
             DatabaseFactors.timeStamp:timeStamp+100,
           });
+
+              .updateData({"event_Month":currentMonth+1});
+
         }
       else if(currentMonth==12){
         await dbRefernce
@@ -45,18 +52,23 @@ class UpdateData{
           DatabaseFactors.eventMonth:1,
           DatabaseFactors.timeStamp:timeStamp+10000
         });
+            .updateData({"event_Month":1});
+
       }
     }
     else if(paymentType.compareTo('weekly')==0){
       if(currentMonth!=4 && currentMonth!=6 && currentMonth!=9 && currentMonth!=11 && currentMonth!=2){
         int nextDay= (currentDay+7)%31;
         if(nextDay<8){
+
           if(currentMonth<12)
             {
+
           await dbRefernce
               .collection('${email}Data')
               .document(_currentDocument.documentID)
               .updateData({"event_Month":currentMonth+1,
+
               DatabaseFactors.timeStamp:timeStamp+100,
               "event_day":nextDay,
               });
@@ -70,6 +82,10 @@ class UpdateData{
               "event_day":nextDay,
             });
           }
+
+              "event_day":nextDay,
+              });
+
         }
         else{
           await dbRefernce
@@ -101,6 +117,12 @@ class UpdateData{
               DatabaseFactors.eventDay:nextDay,
             });
           }
+          await dbRefernce
+              .collection('${email}Data')
+              .document(_currentDocument.documentID)
+              .updateData({"event_Month":currentMonth+1,
+            "event_day":nextDay,
+          });
         }
         else{
           await dbRefernce
@@ -130,6 +152,12 @@ class UpdateData{
               DatabaseFactors.eventDay:nextDay,
             });
           }
+          await dbRefernce
+              .collection('${email}Data')
+              .document(_currentDocument.documentID)
+              .updateData({"event_Month":currentMonth+1,
+            "event_day":nextDay,
+          });
         }
         else{
           await dbRefernce

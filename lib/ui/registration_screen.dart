@@ -19,6 +19,7 @@ class _RegistrationScreenState extends State<RegistrationScreen>
   bool saveAttempted = false;
   final formKey = GlobalKey<FormState>();
   bool obscureText=true;
+
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   void _createUser({@required String email, @required String password}) async {
@@ -175,6 +176,11 @@ class _RegistrationScreenState extends State<RegistrationScreen>
                             else
                               return null;
                           },
+
+
+/*          autovalidate: widget.saveAttempted,
+              validator:widget.validator,*/
+
                           obscureText: false,
                           decoration: InputDecoration(
                             errorStyle: TextStyle(
@@ -234,6 +240,7 @@ class _RegistrationScreenState extends State<RegistrationScreen>
                               return null;
                           },
 
+
                           obscureText: obscureText,
                           decoration: InputDecoration(
                             prefixIcon: IconButton(
@@ -248,6 +255,10 @@ class _RegistrationScreenState extends State<RegistrationScreen>
                                 });
                               },
                             ),
+
+                          obscureText: true,
+                          decoration: InputDecoration(
+
                             errorStyle: TextStyle(
                               color: Colors.white,
                             ),
@@ -301,7 +312,11 @@ class _RegistrationScreenState extends State<RegistrationScreen>
                           },
 /*          autovalidate: widget.saveAttempted,
               validator:widget.validator,*/
+
                           obscureText: obscureText,
+
+                          obscureText: true,
+
                           decoration: InputDecoration(
                             errorStyle: TextStyle(
                               color: Colors.white,

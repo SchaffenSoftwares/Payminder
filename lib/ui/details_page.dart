@@ -174,6 +174,9 @@ class _DetailsPageState extends State<DetailsPage> with SingleTickerProviderStat
                           padding: const EdgeInsets.symmetric(horizontal: 20.0),
                           child: TextFormField(
                             obscureText: false,
+
+                            obscureText: true,
+
                             decoration: InputDecoration(
                               errorStyle: TextStyle(
                                 color: Colors.white,
