@@ -107,11 +107,49 @@ class _SettingsPageState extends State<SettingsPage> {
                         ),
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical:8.0,horizontal: 10.0),
+
+                          child: GestureDetector(
+                            child: Expanded(
+                              child: Container(
+                                width: MediaQuery.of(context).size.width,
+                                child: Text('Contact Us',
+                                  style:TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 17.0,
+                                  ),),
+                              ),
+                            ),
+                            onTap: (){
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  // return object of type Dialog
+                                  return AlertDialog(
+                                    title:  Text('Contact Us:'),
+                                    content:  Text('''Email: askSchaffen@gmail.com
+                                                      Website: schaffensofts.com
+                                    '''),
+                                    actions: <Widget>[
+                                      // usually buttons at the bottom of the dialog
+                                      new FlatButton(
+                                        child: new Text("Close"),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
+                            },
+                          ),
+
                           child: Text('Contact Us',
                             style:TextStyle(
                               color: Colors.white,
                               fontSize: 17.0,
                             ),),
+
                         ),
                         Container(
                           height: 3.0,
@@ -127,11 +165,22 @@ class _SettingsPageState extends State<SettingsPage> {
                           padding: const EdgeInsets.symmetric(vertical:8.0,horizontal: 10.0),
                           child: GestureDetector(
                             onTap: _logOutUser,
+
+                            child: Container(
+                              width: MediaQuery.of(context).size.width,
+                              child: Text('Log Out',
+                                style:TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 17.0,
+                                ),),
+                            ),
+
                             child: Text('Log Out',
                               style:TextStyle(
                                 color: Colors.white,
                                 fontSize: 17.0,
                               ),),
+
                           ),
                         ),
                       ],

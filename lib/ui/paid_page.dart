@@ -63,6 +63,10 @@ class _PaidPageState extends State<PaidPage> {
                   final rechargeMonth=rechargeDetail[DatabaseFactors.eventMonth];
                   final rechargeName=rechargeDetail[DatabaseFactors.eventName];
                   final rechargeDone=rechargeDetail[DatabaseFactors.paid];
+
+                  final timeStamp=rechargeDetail[DatabaseFactors.timeStamp];
+
+
                   print(rechargeDetail[DatabaseFactors.timeStamp]);
                   DocumentSnapshot _currentSnapshot;
                   print('rechargeDone= $rechargeDone, rechargeName=$rechargeName,rechargeMonth=$rechargeMonth');
@@ -75,7 +79,11 @@ class _PaidPageState extends State<PaidPage> {
                       paid: rechargeDone,
                       deleteFunction: (){
                         UpdateData updateData= UpdateData(rechargeDetail);
+
+                        updateData.updateMonthAndDay('one-time-payment', rechargeDay, rechargeMonth,timeStamp);
+
                         updateData.updateMonthAndDay('one-time-payment', rechargeDay, rechargeMonth);
+
                       },
                     );
                     reminderPanels.add(reminderPanel);

@@ -69,6 +69,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
                         onTap:(){
                           _controller.animateBack(0.2);
                           Timer(Duration(milliseconds: 300), (){Navigator.pushNamed(context, LoginScreen.id);});
+
+                          Timer(Duration(seconds: 1),(){_controller.forward();});
+
                       },
                         onDoubleTap: (){
                           _controller.forward();
@@ -81,6 +84,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
                       onTap: (){
                         _controller.animateBack(0.2);
                         Navigator.pushNamed(context, RegistrationScreen.id);
+
+                        Timer(Duration(seconds: 1),(){_controller.forward();});
+
                       },
                         child: LogInButton(
                           text: 'Sign up',

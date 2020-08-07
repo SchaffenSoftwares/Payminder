@@ -110,6 +110,10 @@ class _HomePageState extends State<HomePage> {
                             final rechargeName=rechargeDetail[DatabaseFactors.eventName];
                             final rechargeDone=rechargeDetail[DatabaseFactors.paid];
                             final rechargeType=rechargeDetail[DatabaseFactors.paymentPeriod];
+
+                            final timeStamp=rechargeDetail[DatabaseFactors.timeStamp];
+
+
                             //final date=currentDate(rechargeDay, rechargeMonth);
                             if(rechargeDone==false)
                               {
@@ -158,11 +162,18 @@ class _HomePageState extends State<HomePage> {
                                   paid: rechargeDone,
                                   deleteFunction: (){
                                     UpdateData updateData= UpdateData(rechargeDetail);
+
+                                    updateData.updateMonthAndDay('one-time-payment', rechargeDay, rechargeMonth,timeStamp);
+
                                     updateData.updateMonthAndDay('one-time-payment', rechargeDay, rechargeMonth);
+
                                   },
                                   onTap: (){
                                     UpdateData updateData= UpdateData(rechargeDetail);
                                     updateData.updatePaidStatus();
+
+                                    updateData.updateMonthAndDay(rechargeType, rechargeDay, rechargeMonth,timeStamp);
+
                                     updateData.updateMonthAndDay(rechargeType, rechargeDay, rechargeMonth);
                                   },
                                 );
