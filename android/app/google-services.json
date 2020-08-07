@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "546674233860",
+    "firebase_url": "https://payminder-b1f03.firebaseio.com",
+    "project_id": "payminder-b1f03",
+    "storage_bucket": "payminder-b1f03.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:546674233860:android:9efe5dd756400a67d01b51",
+        "android_client_info": {
+          "package_name": "com.schaffensofts.payminderapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "546674233860-7ke1qqb4bfetpgunmf2t1s4fi4ehjlug.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDw2Ee-I7_zLo-qIiZSvst1AVhvQggehCI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "546674233860-7ke1qqb4bfetpgunmf2t1s4fi4ehjlug.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
